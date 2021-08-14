@@ -1,9 +1,9 @@
 import React from 'react'
 
-function ConnectedAppLayout() {
+function ConnectedAppLayout({ children }) {
   return (
     <div>
-      
+      { children }
     </div>
   )
 }
