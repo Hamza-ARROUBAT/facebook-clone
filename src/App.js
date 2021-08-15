@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ConnectedAppLayout from "./ConnectedAppLayout";
-import DisconnectedAppLayout from "./DisconnectedAppLayout";
-import Home from "./pages/connected/Home";
+import ConnectedAppLayout from "ConnectedAppLayout";
+import DisconnectedAppLayout from "DisconnectedAppLayout";
+import Home from "pages/connected/Home";
 
 function App() {
 
