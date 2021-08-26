@@ -11,7 +11,6 @@ const Container = styled.nav`
   
   display: grid;
   grid-template-rows: min-content auto;
-  background: orange;
 `
 
 function ConnectedAppLayout({ children }) {
