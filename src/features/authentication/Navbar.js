@@ -8,14 +8,20 @@ import { Group } from "@styled-icons/material/Group";
 import { SmartDisplay } from "@styled-icons/material-outlined/SmartDisplay";
 import { Store } from "@styled-icons/boxicons-regular/Store";
 import { Group2 } from "@styled-icons/remix-line/Group2";
+
+import { Grid3x3GapFill as Grid } from "@styled-icons/bootstrap/Grid3x3GapFill";
+import { FacebookMessenger } from "@styled-icons/fa-brands/FacebookMessenger";
+import { Notifications } from "@styled-icons/material/Notifications";
+import { DownArrow } from "@styled-icons/boxicons-solid/DownArrow";
+
 import { Link, NavLink } from "react-router-dom";
 
 const Nav = styled.nav`
+  grid-column: 1/3;
   display: grid;
   grid-template-columns: min-content auto min-content;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 3px;
   padding: 0 0.75em;
-  height: 50px;
   h1 {
     margin: 0;
   }
@@ -27,9 +33,12 @@ const LeftContainer = styled.div`
   align-items: center;
   gap: 0 5px;
 
-  svg {
-    width: 49px;
-    color: #1877f2;
+  a {
+    svg {
+      width: 49px;
+      color: #1877f2;
+      cursor: pointer;
+    }
   }
 `;
 
@@ -65,15 +74,34 @@ const MiddleContainer = styled.div`
 const StyledNavLink = styled(NavLink)`
   &.selected {
     div {
-      border-bottom: 2.5px solid #1877f2;
-      svg {
-        color: #1877f2;
+      div {
+        border-color: #1877f2;
+        svg {
+          color: #1877f2;
+
+          :hover {
+            background: none;
+          }
+        }
       }
     }
   }
 `;
 
 const IconContainer = styled.div`
+  :hover {
+    svg {
+      background: #f0f2f5;
+    }
+  }
+`;
+
+const IconWrapper = styled.div`
+  height: 100%;
+  padding: 0.1em 0;
+  border-bottom: 2.5px solid transparent;
+  transition: border 0.2s;
+
   svg {
     width: 30px;
     padding: 0.6em 2.5em;
@@ -82,52 +110,149 @@ const IconContainer = styled.div`
     color: #909194;
     transition: background 0.15s;
   }
+`;
 
-  :hover {
+const RightContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, min-content);
+  gap: 10px;
+  justify-content: end;
+  align-items: center;
+
+  div:last-of-type {
     svg {
-      background: #f0f2f5;
+      width: 15px;
+      padding: 0.75em;
     }
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
   }
 `;
 
+const AvatarContainer = styled.div`
+  display: grid;
+  grid-template-columns: min-content auto;
+  align-items: center;
+  gap: 0 5px;
+
+  p {
+    white-space: nowrap;
+    margin: 0;
+  }
+  margin-right: 15px;
+  padding: 0.2em 0;
+  padding: 0.2em 0.8em 0.2em 0.2em;
+
+  border-radius: 20px;
+
+  :hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+`;
+
+const Avatar = styled.div`
+  background-image: ${(props) =>
+    props.imgUrl !== "" ? `url(${props.imgUrl})` : `gray`};
+  background: gray;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+`;
+
+const IconButton = styled.div`
+  border-radius: 50%;
+
+  svg {
+    cursor: pointer;
+    width: 20px;
+    background: #e4e6eb;
+    border-radius: 50%;
+    padding: 0.6em;
+
+    transition: background 0.2s;
+  }
+
+  :hover {
+    svg {
+      background: rgba(0, 0, 0, 0.15);
+    }
+  }
+`;
 function Navbar() {
   return (
     <Nav>
       <LeftContainer>
-        <FacebookCircle />
+        <Link to="/home">
+          <FacebookCircle />
+        </Link>
         <SearchBar>
           <Search />
-          <input type="text" />
+          <input type="text" placeholder="Search Facebook" />
         </SearchBar>
       </LeftContainer>
 
       <MiddleContainer>
         <StyledNavLink to="/home" activeClassName="selected">
           <IconContainer>
-            <Home />
+            <IconWrapper>
+              <Home />
+            </IconWrapper>
           </IconContainer>
         </StyledNavLink>
         <StyledNavLink to="/friends" activeClassName="selected">
           <IconContainer>
-            <Group />
+            <IconWrapper>
+              <Group />
+            </IconWrapper>
           </IconContainer>
         </StyledNavLink>
         <StyledNavLink to="/watch" activeClassName="selected">
           <IconContainer>
-            <SmartDisplay />
+            <IconWrapper>
+              <SmartDisplay />
+            </IconWrapper>
           </IconContainer>
         </StyledNavLink>
         <StyledNavLink to="/market-place" activeClassName="selected">
           <IconContainer>
-            <Store />
+            <IconWrapper>
+              <Store />
+            </IconWrapper>
           </IconContainer>
         </StyledNavLink>
         <StyledNavLink to="/groups" activeClassName="selected">
           <IconContainer>
-            <Group2 />
+            <IconWrapper>
+              <Group2 />
+            </IconWrapper>
           </IconContainer>
         </StyledNavLink>
       </MiddleContainer>
+
+      <RightContainer>
+        <Link>
+          <AvatarContainer>
+            <Avatar />
+            <p>Hamza</p>
+          </AvatarContainer>
+        </Link>
+        <IconButton>
+          <Grid />
+        </IconButton>
+        <IconButton>
+          <FacebookMessenger />
+        </IconButton>
+        <IconButton>
+          <Notifications />
+        </IconButton>
+        <IconButton>
+          <DownArrow />
+        </IconButton>
+      </RightContainer>
     </Nav>
   );
 }
