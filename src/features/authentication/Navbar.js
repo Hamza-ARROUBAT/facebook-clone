@@ -17,9 +17,9 @@ import { DownArrow } from "@styled-icons/boxicons-solid/DownArrow";
 import { Link, NavLink } from "react-router-dom";
 
 const Nav = styled.nav`
-  grid-column: 1/3;
+  grid-column: 1/4;
   display: grid;
-  grid-template-columns: min-content auto min-content;
+  grid-template-columns: 23% auto 23%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 3px;
   padding: 0 0.75em;
   h1 {
@@ -114,7 +114,7 @@ const IconWrapper = styled.div`
 
 const RightContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, min-content);
+  grid-template-columns: repeat(3, min-content);
   gap: 10px;
   justify-content: end;
   align-items: center;
@@ -196,7 +196,7 @@ function Navbar() {
       </LeftContainer>
 
       <MiddleContainer>
-        <StyledNavLink to="/home" activeClassName="selected">
+        <StyledNavLink exact to="/" activeClassName="selected">
           <IconContainer>
             <IconWrapper>
               <Home />
@@ -217,7 +217,7 @@ function Navbar() {
             </IconWrapper>
           </IconContainer>
         </StyledNavLink>
-        <StyledNavLink to="/market-place" activeClassName="selected">
+        <StyledNavLink to="/marketplace" activeClassName="selected">
           <IconContainer>
             <IconWrapper>
               <Store />
@@ -241,13 +241,7 @@ function Navbar() {
           </AvatarContainer>
         </Link>
         <IconButton>
-          <Grid />
-        </IconButton>
-        <IconButton>
           <FacebookMessenger />
-        </IconButton>
-        <IconButton>
-          <Notifications />
         </IconButton>
         <IconButton>
           <DownArrow />

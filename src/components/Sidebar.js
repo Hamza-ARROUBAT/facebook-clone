@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Group } from "@styled-icons/material/Group";
+import { Group2 } from "@styled-icons/remix-line/Group2";
 
 const NavList = styled.nav`
   display: grid;
@@ -35,6 +37,11 @@ const ListItem = styled.div`
   p {
     font-weight: 500;
   }
+
+  svg {
+    width: 30px;
+    color: hsl(0, 0%, 60%);
+  }
 `;
 
 const Avatar = styled.div`
@@ -52,67 +59,19 @@ function Sidebar() {
       <Link>
         <ListItem>
           <Avatar imgUrl="" />
-          <p>Xdr Rdx</p>
+          <p>Hamza ARROUBAT</p>
         </ListItem>
       </Link>
       <Link>
         <ListItem>
-          <Avatar />
-          <p>Xdr Rdx</p>
+          <Group />
+          <p>Find Friends</p>
         </ListItem>
       </Link>
       <Link>
         <ListItem>
-          <Avatar />
-          <p>Xdr Rdx</p>
-        </ListItem>
-      </Link>
-      <Link>
-        <ListItem>
-          <Avatar />
-          <p>Xdr Rdx</p>
-        </ListItem>
-      </Link>
-      <Link>
-        <ListItem>
-          <Avatar />
-          <p>Xdr Rdx</p>
-        </ListItem>
-      </Link>
-      <Link>
-        <ListItem>
-          <Avatar />
-          <p>Xdr Rdx</p>
-        </ListItem>
-      </Link>
-      <Link>
-        <ListItem>
-          <Avatar />
-          <p>Xdr Rdx</p>
-        </ListItem>
-      </Link>
-      <Link>
-        <ListItem>
-          <Avatar />
-          <p>Xdr Rdx</p>
-        </ListItem>
-      </Link>
-      <Link>
-        <ListItem>
-          <Avatar />
-          <p>Xdr Rdx</p>
-        </ListItem>
-      </Link>
-      <Link>
-        <ListItem>
-          <Avatar />
-          <p>Xdr Rdx</p>
-        </ListItem>
-      </Link>
-      <Link>
-        <ListItem>
-          <Avatar />
-          <p>Xdr Rdx</p>
+          <Group2 />
+          <p>Groups</p>
         </ListItem>
       </Link>
     </NavList>
