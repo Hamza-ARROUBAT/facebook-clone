@@ -14,6 +14,9 @@ const Container = styled.nav`
   display: grid;
   grid-template-rows: min-content auto;
   grid-template-columns: 23% auto 23%;
+  overflow-y: scroll;
+  gap: 0 20px;
+
 `;
 
 function ConnectedAppLayout({ children }) {

@@ -7,6 +7,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: repeat(auto-fit, minmax(min-content, 100px));
   justify-content: center;
+  gap: 20px;
   margin-top: 20px;
 `;
 

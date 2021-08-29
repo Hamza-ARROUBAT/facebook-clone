@@ -7,7 +7,6 @@ import { Group2 } from "@styled-icons/remix-line/Group2";
 const NavList = styled.nav`
   display: grid;
   padding: 1em 0 0 0.5em;
-  overflow-y: scroll;
   grid-template-rows: repeat(auto-fit, minmax(20px, min-content));
   height: 100%;
 

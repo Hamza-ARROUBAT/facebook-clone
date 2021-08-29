@@ -10,6 +10,7 @@ const Container = styled.div`
   align-items: start;
   padding: 1em;
   gap: 10px 0;
+  width: 520px;
 `;
 
 const TopContainer = styled.div`
@@ -32,7 +33,6 @@ const AddBar = styled.div`
   background: #f0f2f5;
   border-radius: 20px;
   display: grid;
-  width: 440px;
   padding: 0.7em 1em 0.6em 1em;
 
   input {
