@@ -96,7 +96,7 @@ const ActionButton = styled.div`
     props.isDisabled ? "hsl(0, 0%, 30%, 20%)" : "hsl(207, 83%, 75%, 20%)"};
 
   svg {
-    width: 25px;
+    width: 20px;
     color: ${(props) =>
       props.isDisabled ? "hsl(0, 0%, 30%, 50%)" : "hsl(214, 89%, 52%)"};
   }

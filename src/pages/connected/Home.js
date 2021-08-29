@@ -1,4 +1,5 @@
 import AddPost from "features/posts/AddPost";
+import Post from "features/posts/Post";
 import React from "react";
 import styled from "styled-components";
 
@@ -13,6 +14,7 @@ function Home() {
   return (
     <Container>
       <AddPost />
+      <Post />
     </Container>
   );
 }
