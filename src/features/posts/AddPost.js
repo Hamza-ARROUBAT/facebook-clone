@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { PhotoLibrary } from "@styled-icons/material/PhotoLibrary";
 import { Add } from "@styled-icons/fluentui-system-filled/Add";
@@ -84,7 +84,7 @@ const Button = styled.div`
 `;
 
 const ActionButton = styled.div`
-  cursor: pointer;
+  cursor: ${(props) => (props.isDisabled ? "default" : "pointer")};
   display: grid;
   grid-template-columns: min-content auto;
   align-items: center;
@@ -92,32 +92,45 @@ const ActionButton = styled.div`
   border-radius: 25px;
 
   padding: 0.5em 1em;
-  background: hsl(207, 83%, 75%, 20%);
+  background: ${(props) =>
+    props.isDisabled ? "hsl(0, 0%, 30%, 20%)" : "hsl(207, 83%, 75%, 20%)"};
 
   svg {
     width: 25px;
-    color: hsl(214, 89%, 52%);
+    color: ${(props) =>
+      props.isDisabled ? "hsl(0, 0%, 30%, 50%)" : "hsl(214, 89%, 52%)"};
   }
 
   p {
     font-weight: 500;
-    color: hsl(0, 0%, 35%);
+    color: ${(props) =>
+      props.isDisabled ? "hsl(0, 0%, 55%)" : "hsl(0, 0%, 35%)"};
     margin: 0;
   }
 
   transition: background 0.3s;
   :hover {
-    background: hsl(207, 83%, 75%, 50%);
+    background: ${(props) => !props.isDisabled && "hsl(207, 83%, 75%, 50%)"};
   }
 `;
 
 function AddPost() {
+  const [postMessage, setPostMessage] = useState();
+
   return (
     <Container>
       <TopContainer>
         <Avatar />
         <AddBar>
-          <input type="text" placeholder="What's on your mind, Hamza?" />
+          <input
+            type="text"
+            placeholder="What's on your mind, Hamza?"
+            value={postMessage}
+            onChange={(e) => {
+              setPostMessage(e.target.value);
+              console.log(e.target.value);
+            }}
+          />
         </AddBar>
       </TopContainer>
       <HSeparator />
@@ -126,7 +139,12 @@ function AddPost() {
           <PhotoLibrary />
           <p>Photo</p>
         </Button>
-        <ActionButton>
+        <ActionButton
+          isDisabled={!postMessage}
+          onClick={() => {
+            console.log(postMessage);
+          }}
+        >
           <Add />
           <p>Post it</p>
         </ActionButton>
