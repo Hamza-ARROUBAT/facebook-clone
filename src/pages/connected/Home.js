@@ -3,10 +3,10 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin-top: 20px;
   display: grid;
   grid-template-rows: repeat(auto-fit, minmax(min-content, 100px));
   justify-content: center;
+  margin-top: 20px;
 `;
 
 function Home() {

@@ -1,20 +1,15 @@
-import React from "react";
-import styled from "styled-components";
 import { FacebookCircle } from "@styled-icons/boxicons-logos/FacebookCircle";
-import { Search } from "@styled-icons/material/Search";
-
-import { Home } from "@styled-icons/material/Home";
-import { Group } from "@styled-icons/material/Group";
-import { SmartDisplay } from "@styled-icons/material-outlined/SmartDisplay";
 import { Store } from "@styled-icons/boxicons-regular/Store";
-import { Group2 } from "@styled-icons/remix-line/Group2";
-
-import { Grid3x3GapFill as Grid } from "@styled-icons/bootstrap/Grid3x3GapFill";
-import { FacebookMessenger } from "@styled-icons/fa-brands/FacebookMessenger";
-import { Notifications } from "@styled-icons/material/Notifications";
 import { DownArrow } from "@styled-icons/boxicons-solid/DownArrow";
-
+import { FacebookMessenger } from "@styled-icons/fa-brands/FacebookMessenger";
+import { SmartDisplay } from "@styled-icons/material-outlined/SmartDisplay";
+import { Group } from "@styled-icons/material/Group";
+import { Home } from "@styled-icons/material/Home";
+import { Search } from "@styled-icons/material/Search";
+import { Group2 } from "@styled-icons/remix-line/Group2";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 const Nav = styled.nav`
   grid-column: 1/4;
