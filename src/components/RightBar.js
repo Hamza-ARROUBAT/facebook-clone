@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
+
+const Container = styled.div`
+  justify-self: right; 
+`
 
 function RightBar() {
   return (
-    <div>
-      
-    </div>
-  )
+    <Container>
+      <h1> </h1>
+    </Container>
+  );
 }
 
-export default RightBar
+export default RightBar;

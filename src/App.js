@@ -16,13 +16,13 @@ function App() {
       {isConnected ? (
         <ConnectedAppLayout>
           <Switch>
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
           </Switch>
         </ConnectedAppLayout>
       ) : (
         <DisconnectedAppLayout>
           <Switch>
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
           </Switch>
         </DisconnectedAppLayout>
       )}

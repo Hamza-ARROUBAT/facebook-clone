@@ -9,12 +9,36 @@ const Container = styled.div`
   justify-content: center;
   gap: 20px;
   margin-top: 20px;
+  scroll-margin: 0;
+  position: absolute;
+  top: 35px;
+  justify-self: center;
+  height: 100vh;
+  overflow-y: scroll;
+  width: 100%;
+  padding-top: 30px;
+  z-index: -1
 `;
 
 function Home() {
   return (
     <Container>
       <AddPost />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
+      <Post />
       <Post />
     </Container>
   );

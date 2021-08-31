@@ -20,9 +20,6 @@ const Nav = styled.nav`
   h1 {
     margin: 0;
   }
-  position: sticky;
-  top: 0;
-  z-index: 10;
   background: hsl(0, 0%, 100%);
 `;
 

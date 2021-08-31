@@ -9,7 +9,6 @@ const NavList = styled.nav`
   padding: 1em 0 0 0.5em;
   grid-template-rows: repeat(auto-fit, minmax(20px, min-content));
   height: 100%;
-
   align-items: center;
 
   a {
