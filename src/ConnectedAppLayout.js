@@ -10,9 +10,11 @@ const Container = styled.nav`
   grid-template-columns: 23% auto 23%;
   gap: 0 20px;
 
+  justify-items: space-between;
   position: fixed;
   top: 0;
   width: 100%;
+  height: 100%;
 `;
 
 function ConnectedAppLayout({ children }) {

@@ -8,38 +8,111 @@ const Container = styled.div`
   grid-template-rows: repeat(auto-fit, minmax(min-content, 100px));
   justify-content: center;
   gap: 20px;
-  margin-top: 20px;
+  padding-top: 85px;
+  padding-left: 20px;
   scroll-margin: 0;
   position: absolute;
-  top: 35px;
   justify-self: center;
-  height: 100vh;
+  height: 89vh;
   overflow-y: scroll;
   width: 100%;
-  padding-top: 30px;
-  z-index: -1
+  z-index: -1;
 `;
 
 function Home() {
+  const posts = [
+    {
+      user: {
+        avatar: null,
+        firstName: "Hamza",
+        lastName: "ARROUBAT",
+        date: "August 29 at 11:45 AM"
+      },
+      text: "omg look at this mister !",
+      img: "",
+      likes: {
+        users: ["Yasuo, Lee Sin, Gragas"]
+      },
+      comments: [{ user: "Yasuo", text: "What is this?!!" }]
+    },
+    {
+      user: {
+        avatar: null,
+        firstName: "Yasuo",
+        lastName: "WindMaster",
+        date: "August 29 at 12:45 AM"
+      },
+      text: "HASAGI",
+      img: "",
+      likes: {
+        users: ["Hamza, Lee Sin, Gragas"]
+      },
+      comments: [{ user: "Hamza", text: "What is this?!!" }]
+    },
+    {
+      user: {
+        avatar: null,
+        firstName: "Yasuo",
+        lastName: "WindMaster",
+        date: "August 29 at 12:45 AM"
+      },
+      text: "HASAGI",
+      img: "",
+      likes: {
+        users: ["Hamza, Lee Sin, Gragas"]
+      },
+      comments: [{ user: "Hamza", text: "What is this?!!" }]
+    },
+    {
+      user: {
+        avatar: null,
+        firstName: "Yasuo",
+        lastName: "WindMaster",
+        date: "August 29 at 12:45 AM"
+      },
+      text: "HASAGI",
+      img: "",
+      likes: {
+        users: ["Hamza, Lee Sin, Gragas"]
+      },
+      comments: [{ user: "Hamza", text: "What is this?!!" }]
+    },
+    {
+      user: {
+        avatar: null,
+        firstName: "Yasuo",
+        lastName: "WindMaster",
+        date: "August 29 at 12:45 AM"
+      },
+      text: "HASAGI",
+      img: "",
+      likes: {
+        users: ["Hamza, Lee Sin, Gragas"]
+      },
+      comments: [{ user: "Hamza", text: "What is this?!!" }]
+    },
+    {
+      user: {
+        avatar: null,
+        firstName: "Yasuo",
+        lastName: "WindMaster",
+        date: "August 29 at 12:45 AM"
+      },
+      text: "HASAGI",
+      img: "",
+      likes: {
+        users: ["Hamza, Lee Sin, Gragas"]
+      },
+      comments: [{ user: "Hamza", text: "What is this?!!" }]
+    },
+  ];
+
   return (
     <Container>
       <AddPost />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      {posts.map((post) => (
+        <Post post={post} />
+      ))}
     </Container>
   );
 }
