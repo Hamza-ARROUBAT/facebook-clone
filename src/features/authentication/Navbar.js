@@ -182,7 +182,7 @@ function Navbar() {
   return (
     <Nav>
       <LeftContainer>
-        <Link to="/home">
+        <Link to="/">
           <FacebookCircle />
         </Link>
         <SearchBar>

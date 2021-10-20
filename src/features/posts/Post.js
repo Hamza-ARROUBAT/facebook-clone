@@ -157,7 +157,7 @@ function Post() {
         <MoreHorizontal />
       </Header>
       <TextContainer>
-        <p>OMG LOOK AT THIS MISTER !!!!</p>
+        <p>Facebook test !</p>
       </TextContainer>
       <ImgContainer>
         <img src={facebookGif} alt="" />

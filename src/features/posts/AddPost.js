@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { PhotoLibrary } from "@styled-icons/material/PhotoLibrary";
 import { Add } from "@styled-icons/fluentui-system-filled/Add";
 
@@ -55,6 +55,14 @@ const ButtonsContainer = styled.div`
   grid-template-columns: max-content max-content;
   align-items: center;
   justify-content: space-between;
+
+  input {
+    display: none;
+  }
+
+  label {
+    cursor: pointer;
+  }
 `;
 
 const Button = styled.div`
@@ -65,6 +73,10 @@ const Button = styled.div`
   gap: 0 10px;
   border-radius: 10px;
   padding: 0.5em 1em;
+  background: ${(props) =>
+    props.isHavingImg
+      ? "hsla(166, 88%, 35%, 15%)"
+      : "hsla(0,0%,0%,0%)"};
 
   svg {
     width: 25px;
@@ -116,6 +128,32 @@ const ActionButton = styled.div`
 
 function AddPost() {
   const [postMessage, setPostMessage] = useState();
+  const [profileImgUri, setProfileImgUri] = useState("");
+  const [isHavingImg, setIsHavingImg] = useState(profileImgUri !== "");
+
+  const fileToDataUri = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        resolve(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    });
+  const onChange = (file) => {
+    if (!file) {
+      setProfileImgUri("");
+      return;
+    }
+
+    fileToDataUri(file).then((profileImgDatas) => {
+      setProfileImgUri(profileImgDatas);
+      setIsHavingImg(true);
+    });
+  };
+  const removeProfileImg = () => {
+    setProfileImgUri("");
+    setIsHavingImg(false);
+  };
 
   return (
     <Container>
@@ -135,10 +173,19 @@ function AddPost() {
       </TopContainer>
       <HSeparator />
       <ButtonsContainer>
-        <Button>
-          <PhotoLibrary />
-          <p>Photo</p>
-        </Button>
+        <label htmlFor="postImg">
+          <Button isHavingImg={isHavingImg}>
+            <PhotoLibrary />
+            <p>Photo</p>
+            <input
+              type="file"
+              id="postImg"
+              name="postImg"
+              accept=".jpg, .jpeg, .png, .gif, .svg"
+              onChange={(event) => onChange(event.target.files[0] || null)}
+            />
+          </Button>
+        </label>
         <ActionButton
           isDisabled={!postMessage}
           onClick={() => {
