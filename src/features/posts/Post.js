@@ -144,7 +144,7 @@ const Button = styled.div`
   }
 `;
 
-function Post() {
+function Post({post}) {
   // eslint-disable-next-line
   const [commentsNumber, setCommentsNumber] = useState(0);
 
@@ -157,10 +157,10 @@ function Post() {
         <MoreHorizontal />
       </Header>
       <TextContainer>
-        <p>Facebook test !</p>
+        <p>{post.text}</p>
       </TextContainer>
       <ImgContainer>
-        <img src={facebookGif} alt="" />
+        <img src={post.imgUri} alt="" />
       </ImgContainer>
       <Footer>
         <CommentsContainer>

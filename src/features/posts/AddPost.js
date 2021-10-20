@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { PhotoLibrary } from "@styled-icons/material/PhotoLibrary";
 import { Add } from "@styled-icons/fluentui-system-filled/Add";
+import { addPost } from "store/reducers/posts/posts.action";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div`
   display: grid;
@@ -74,9 +76,7 @@ const Button = styled.div`
   border-radius: 10px;
   padding: 0.5em 1em;
   background: ${(props) =>
-    props.isHavingImg
-      ? "hsla(166, 88%, 35%, 15%)"
-      : "hsla(0,0%,0%,0%)"};
+    props.isHavingImg ? "hsla(166, 88%, 35%, 15%)" : "hsla(0,0%,0%,0%)"};
 
   svg {
     width: 25px;
@@ -127,9 +127,11 @@ const ActionButton = styled.div`
 `;
 
 function AddPost() {
+  const dispatch = useDispatch();
+
   const [postMessage, setPostMessage] = useState();
-  const [profileImgUri, setProfileImgUri] = useState("");
-  const [isHavingImg, setIsHavingImg] = useState(profileImgUri !== "");
+  const [postImgUri, setPostImgUri] = useState("");
+  const [isHavingImg, setIsHavingImg] = useState(postImgUri !== "");
 
   const fileToDataUri = (file) =>
     new Promise((resolve, reject) => {
@@ -141,18 +143,25 @@ function AddPost() {
     });
   const onChange = (file) => {
     if (!file) {
-      setProfileImgUri("");
+      setPostImgUri("");
       return;
     }
 
     fileToDataUri(file).then((profileImgDatas) => {
-      setProfileImgUri(profileImgDatas);
+      setPostImgUri(profileImgDatas);
       setIsHavingImg(true);
     });
   };
-  const removeProfileImg = () => {
-    setProfileImgUri("");
+  const removePostImg = () => {
+    setPostImgUri("");
     setIsHavingImg(false);
+  };
+
+  const handleAdd = () => {
+    dispatch(addPost({ text: postMessage, imgUri: postImgUri }));
+    setPostImgUri("");
+    setIsHavingImg(false);
+    setPostMessage("");
   };
 
   return (
@@ -186,12 +195,7 @@ function AddPost() {
             />
           </Button>
         </label>
-        <ActionButton
-          isDisabled={!postMessage}
-          onClick={() => {
-            console.log(postMessage);
-          }}
-        >
+        <ActionButton isDisabled={!postMessage && !postImgUri} onClick={handleAdd}>
           <Add />
           <p>Post it</p>
         </ActionButton>

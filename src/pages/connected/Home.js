@@ -1,6 +1,7 @@
 import AddPost from "features/posts/AddPost";
 import Post from "features/posts/Post";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -20,98 +21,25 @@ const Container = styled.div`
 `;
 
 function Home() {
-  const posts = [
-    {
-      user: {
-        avatar: null,
-        firstName: "Hamza",
-        lastName: "ARROUBAT",
-        date: "August 29 at 11:45 AM"
-      },
-      text: "omg look at this mister !",
-      img: "",
-      likes: {
-        users: ["Yasuo, Lee Sin, Gragas"]
-      },
-      comments: [{ user: "Yasuo", text: "What is this?!!" }]
-    },
-    {
-      user: {
-        avatar: null,
-        firstName: "Yasuo",
-        lastName: "WindMaster",
-        date: "August 29 at 12:45 AM"
-      },
-      text: "HASAGI",
-      img: "",
-      likes: {
-        users: ["Hamza, Lee Sin, Gragas"]
-      },
-      comments: [{ user: "Hamza", text: "What is this?!!" }]
-    },
-    {
-      user: {
-        avatar: null,
-        firstName: "Yasuo",
-        lastName: "WindMaster",
-        date: "August 29 at 12:45 AM"
-      },
-      text: "HASAGI",
-      img: "",
-      likes: {
-        users: ["Hamza, Lee Sin, Gragas"]
-      },
-      comments: [{ user: "Hamza", text: "What is this?!!" }]
-    },
-    {
-      user: {
-        avatar: null,
-        firstName: "Yasuo",
-        lastName: "WindMaster",
-        date: "August 29 at 12:45 AM"
-      },
-      text: "HASAGI",
-      img: "",
-      likes: {
-        users: ["Hamza, Lee Sin, Gragas"]
-      },
-      comments: [{ user: "Hamza", text: "What is this?!!" }]
-    },
-    {
-      user: {
-        avatar: null,
-        firstName: "Yasuo",
-        lastName: "WindMaster",
-        date: "August 29 at 12:45 AM"
-      },
-      text: "HASAGI",
-      img: "",
-      likes: {
-        users: ["Hamza, Lee Sin, Gragas"]
-      },
-      comments: [{ user: "Hamza", text: "What is this?!!" }]
-    },
-    {
-      user: {
-        avatar: null,
-        firstName: "Yasuo",
-        lastName: "WindMaster",
-        date: "August 29 at 12:45 AM"
-      },
-      text: "HASAGI",
-      img: "",
-      likes: {
-        users: ["Hamza, Lee Sin, Gragas"]
-      },
-      comments: [{ user: "Hamza", text: "What is this?!!" }]
-    },
-  ];
+  // store selectors
+  const dispatch = useDispatch();
+  const isPostsLoading = useSelector((state) => state.posts.isLoading);
+  const postsData = useSelector((state) => state.posts.data);
+
+  // Loading Screen
+  const [animate, setAnimate] = useState(false);
+  const [disappear, setDisappear] = useState(false);
+
+  // Fetching data
+  useEffect(() => {
+    // dispatch(getPosts());
+  });
 
   return (
     <Container>
       <AddPost />
-      {posts.map((post) => (
-        <Post post={post} />
+      {postsData.map((post, index) => (
+        <Post key={index} post={post} />
       ))}
     </Container>
   );
