@@ -8,7 +8,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: repeat(auto-fit, minmax(min-content, 100px));
   justify-content: center;
-  gap: 20px;
+  gap: 2em;
   padding-top: 85px;
   padding-left: 20px;
   scroll-margin: 0;
@@ -18,6 +18,12 @@ const Container = styled.div`
   overflow-y: scroll;
   width: 100%;
   z-index: -1;
+`;
+
+const PostsContainer = styled.div`
+  display: grid;
+  gap: 1em 0;
+  padding-bottom: 1em;
 `;
 
 function Home() {
@@ -38,9 +44,11 @@ function Home() {
   return (
     <Container>
       <AddPost />
-      {postsData.map((post, index) => (
-        <Post key={index} post={post} />
-      ))}
+      <PostsContainer>
+        {postsData.map((post, index) => (
+          <Post key={index} post={post} />
+        ))}
+      </PostsContainer>
     </Container>
   );
 }

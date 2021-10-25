@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled, { css } from "styled-components";
 import { PhotoLibrary } from "@styled-icons/material/PhotoLibrary";
 import { Add } from "@styled-icons/fluentui-system-filled/Add";
 import { addPost } from "store/reducers/posts/posts.action";
 import { useDispatch } from "react-redux";
 
-const Container = styled.div`
+const Container = styled.div``;
+
+const PostForm = styled.form`
   display: grid;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -157,49 +159,57 @@ function AddPost() {
     setIsHavingImg(false);
   };
 
-  const handleAdd = () => {
+  const handleSubmit = (e) => {
+    e?.preventDefault();
     dispatch(addPost({ text: postMessage, imgUri: postImgUri }));
     setPostImgUri("");
     setIsHavingImg(false);
     setPostMessage("");
   };
 
+  const postForm = useRef();
+
   return (
     <Container>
-      <TopContainer>
-        <Avatar />
-        <AddBar>
-          <input
-            type="text"
-            placeholder="What's on your mind, Hamza?"
-            value={postMessage}
-            onChange={(e) => {
-              setPostMessage(e.target.value);
-              console.log(e.target.value);
-            }}
-          />
-        </AddBar>
-      </TopContainer>
-      <HSeparator />
-      <ButtonsContainer>
-        <label htmlFor="postImg">
-          <Button isHavingImg={isHavingImg}>
-            <PhotoLibrary />
-            <p>Photo</p>
+      <PostForm onSubmit={handleSubmit} ref={postForm}>
+        <TopContainer>
+          <Avatar />
+          <AddBar>
             <input
-              type="file"
-              id="postImg"
-              name="postImg"
-              accept=".jpg, .jpeg, .png, .gif, .svg"
-              onChange={(event) => onChange(event.target.files[0] || null)}
+              type="text"
+              placeholder="What's on your mind, Hamza?"
+              value={postMessage}
+              onChange={(e) => {
+                setPostMessage(e.target.value);
+                console.log(e.target.value);
+              }}
             />
-          </Button>
-        </label>
-        <ActionButton isDisabled={!postMessage && !postImgUri} onClick={handleAdd}>
-          <Add />
-          <p>Post it</p>
-        </ActionButton>
-      </ButtonsContainer>
+          </AddBar>
+        </TopContainer>
+        <HSeparator />
+        <ButtonsContainer>
+          <label htmlFor="postImg">
+            <Button isHavingImg={isHavingImg}>
+              <PhotoLibrary />
+              <p>Photo</p>
+              <input
+                type="file"
+                id="postImg"
+                name="postImg"
+                accept=".jpg, .jpeg, .png, .gif, .svg"
+                onChange={(event) => onChange(event.target.files[0] || null)}
+              />
+            </Button>
+          </label>
+          <ActionButton
+            isDisabled={!postMessage && !postImgUri}
+            onClick={handleSubmit}
+          >
+            <Add />
+            <p>Post it</p>
+          </ActionButton>
+        </ButtonsContainer>
+      </PostForm>
     </Container>
   );
 }
