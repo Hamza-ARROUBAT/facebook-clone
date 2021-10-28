@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Group } from "@styled-icons/material/Group";
 import { Group2 } from "@styled-icons/remix-line/Group2";
+import { useSelector } from "react-redux";
 
 const NavList = styled.nav`
   display: grid;
@@ -52,12 +53,15 @@ const Avatar = styled.div`
 `;
 
 function Sidebar() {
+  const user = useSelector((state) => state.user);
   return (
     <NavList>
       <Link>
         <ListItem>
           <Avatar imgUrl="" />
-          <p>Hamza ARROUBAT</p>
+          <p>
+            {user.data.firstName} {user.data.lastName}
+          </p>
         </ListItem>
       </Link>
       <Link>

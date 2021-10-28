@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { PhotoLibrary } from "@styled-icons/material/PhotoLibrary";
 import { Add } from "@styled-icons/fluentui-system-filled/Add";
 import { addPost } from "store/reducers/posts/posts.action";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Container = styled.div``;
 
@@ -130,6 +130,7 @@ const ActionButton = styled.div`
 
 function AddPost() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const [postMessage, setPostMessage] = useState();
   const [postImgUri, setPostImgUri] = useState("");
@@ -161,14 +162,22 @@ function AddPost() {
 
   const handleSubmit = (e) => {
     e?.preventDefault();
-    dispatch(addPost({ text: postMessage, imgUri: postImgUri }));
+    dispatch(
+      addPost({
+        id: Math.floor(Math.random() * 1000000),
+        text: postMessage,
+        imgUri: postImgUri,
+        likes: 0,
+        likedBy: [],
+        dislikes: 0
+      })
+    );
     setPostImgUri("");
     setIsHavingImg(false);
     setPostMessage("");
   };
 
   const postForm = useRef();
-
   return (
     <Container>
       <PostForm onSubmit={handleSubmit} ref={postForm}>
@@ -177,11 +186,10 @@ function AddPost() {
           <AddBar>
             <input
               type="text"
-              placeholder="What's on your mind, Hamza?"
+              placeholder={`What's on your mind, ${user.data.firstName}?`}
               value={postMessage}
               onChange={(e) => {
                 setPostMessage(e.target.value);
-                console.log(e.target.value);
               }}
             />
           </AddBar>

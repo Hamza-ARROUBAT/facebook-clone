@@ -5,6 +5,8 @@ import { Like as RegularLike } from "@styled-icons/boxicons-regular/Like";
 import { Comment as RegularComment } from "@styled-icons/octicons/Comment";
 import styled from "styled-components";
 import facebookGif from "assets/images/facebook.gif";
+import { likePost } from "store/reducers/posts/posts.action";
+import { useDispatch, useSelector } from "react-redux";
 
 const Container = styled.div`
   display: grid;
@@ -80,16 +82,18 @@ const Footer = styled.div`
 const CommentsContainer = styled.div`
   display: grid;
   grid-template-columns: min-content max-content auto;
-  align-items: center;
+  align-items: end;
   gap: 0 10px;
+  height: 20px;
 
   svg {
     width: 12.5px;
-    color: white;
+    color: ${(props) => (props.liked ? "blue" : `white`)};
     border-radius: 50%;
     background: hsl(214, 89%, 52%);
     padding: 0.2em;
   }
+
   p {
     margin: 0;
     font-size: 1rem;
@@ -117,7 +121,9 @@ const ButtonsContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
 `;
-const Button = styled.div`
+const Button = styled.button`
+  background: none;
+  border: none;
   cursor: pointer;
   display: grid;
   grid-template-columns: min-content auto;
@@ -133,7 +139,8 @@ const Button = styled.div`
   }
 
   p {
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1rem;
     color: hsl(0, 0%, 35%);
     margin: 0;
   }
@@ -144,10 +151,13 @@ const Button = styled.div`
   }
 `;
 
-function Post({post}) {
-  // eslint-disable-next-line
+function Post({ post }) {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const posts = useSelector((state) => state.posts);
   const [commentsNumber, setCommentsNumber] = useState(0);
 
+  console.log(posts.data);
   return (
     <Container>
       <Header>
@@ -164,13 +174,23 @@ function Post({post}) {
       </ImgContainer>
       <Footer>
         <CommentsContainer>
-          <FilledLike />
-          <p>25</p>
+          {post.likes > 0 && (
+            <>
+              <FilledLike />
+              <p>{post.likes}</p>
+            </>
+          )}
           {commentsNumber !== 0 && <p> {commentsNumber} Comments</p>}
         </CommentsContainer>
         <HSeparator />
-        <ButtonsContainer>
-          <Button>
+        <ButtonsContainer
+        // liked={post.likes > 0}
+        >
+          <Button
+            onClick={() => {
+              dispatch(likePost(post.id, user.data.id));
+            }}
+          >
             <RegularLike />
             <p>Like</p>
           </Button>

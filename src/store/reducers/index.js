@@ -1,7 +1,9 @@
 import posts from "./posts/posts.reducer";
+import user from "./user/user.reducer";
 
 const reducers = {
-  posts
+  posts,
+  user
 };
 
 export default reducers;

@@ -42,30 +42,40 @@ const cardsReducer = produce((draft, action) => {
     case LIKE_POST:
       draft.isLoading = true;
 
-      if (!currentDraft.likedPosts.includes(action.id)) {
-        draft.data = currentDraft.data.map((post) => {
-          if (post.id === action.id) {
-            const newPost = { ...post, likes: post.likes + 1 };
+      draft.data = currentDraft.data.map((post) => {
+        if (post.id === action.id) {
+          if (!post.likedBy.includes(action.userId)) {
+            const newPost = {
+              ...post,
+              likes: post.likes + 1,
+              likedBy: [...post.likedBy, action.userId]
+            };
             return newPost;
           } else {
-            return post;
+            if (post.likedBy.length === 1) {
+              const newPost = {
+                ...post,
+                likes: post.likes - 1,
+                likedBy: []
+              };
+              return newPost;
+            } else {
+              const targetIndex = post.likedBy.findIndex(
+                (id) => id === action.userId
+              );
+              const newPost = {
+                ...post,
+                likes: post.likes - 1,
+                likedBy: post.likedBy.splice(targetIndex, 1)
+              };
+              return newPost;
+            }
           }
-        });
-        draft.likedPosts = [...currentDraft.likedPosts, action.id];
-      } else {
-        draft.data = currentDraft.data.map((post) => {
-          if (post.id === action.id) {
-            const newPost = { ...post, likes: post.likes - 1 };
-            return newPost;
-          } else {
-            return post;
-          }
-        });
+        } else {
+          return post;
+        }
+      });
 
-        draft.likedPosts = currentDraft.likedPosts.filter(
-          (id) => id !== action.id
-        );
-      }
       draft.isLoading = false;
       break;
 

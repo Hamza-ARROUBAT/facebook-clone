@@ -21,9 +21,10 @@ export const deletePost = (id) => ({
   id
 });
 
-export const likePost = (id) => ({
+export const likePost = (id, userId) => ({
   type: LIKE_POST,
-  id
+  id,
+  userId
 });
 
 export const dislikePost = (id) => ({

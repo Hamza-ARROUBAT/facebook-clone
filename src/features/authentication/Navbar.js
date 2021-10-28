@@ -8,6 +8,7 @@ import { Home } from "@styled-icons/material/Home";
 import { Search } from "@styled-icons/material/Search";
 import { Group2 } from "@styled-icons/remix-line/Group2";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -179,6 +180,10 @@ const IconButton = styled.div`
   }
 `;
 function Navbar() {
+  const user = useSelector((state) => state.user);
+
+  console.log(user);
+
   return (
     <Nav>
       <LeftContainer>
@@ -233,7 +238,7 @@ function Navbar() {
         <Link>
           <AvatarContainer>
             <Avatar />
-            <p>Hamza</p>
+            <p>{user.data.firstName}</p>
           </AvatarContainer>
         </Link>
         <IconButton>
